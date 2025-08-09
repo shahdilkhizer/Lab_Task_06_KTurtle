@@ -1,10 +1,10 @@
 Turtle Graphics Application
 A simple Java console application that uses a "turtle" to draw shapes on a graphical canvas. You can either choose from built-in shapes or create your own custom designs by providing commands.
-```
+
 Features
 Built-in Shapes: Draw pre-defined shapes like a square or a zig-zag pattern.
 
-Custom Commands: Create your own drawings by using a sequence of commands.
+Custom Commands: Create your own drawings by using a sequence of commands:
 
 F: Move the turtle forward.
 
@@ -13,7 +13,7 @@ F: Move the turtle forward.
 -: Turn the turtle 90 degrees to the left.
 
 Graphical Interface: The application uses a JFrame to display the canvas and the resulting drawings.
-```
+
 How to Run
 Prerequisites
 Java Development Kit (JDK) 8 or higher installed on your machine.
@@ -30,9 +30,11 @@ java Main
 
 Usage
 When you run the application, you will be presented with a console menu:
+
 Available drawing commands: 
  1. Use Built-in Commands 
  2. Custom Shapes
+
 Option 1: Built-in Commands
 Enter 1 and press Enter.
 
@@ -57,3 +59,27 @@ To draw a square using custom commands:
 Give your Custom one e.g. F+F+F+F or F-F-F-F 
  'F' = forward, '+' = turn right and '-' = turn left
  :F+F+F+F
+
+
+## Installation
+
+Install my-project with npm
+
+```bash
+npm install my-project
+cd my-project
+```
+
+## Usage/Examples
+
+```javascript
+import Component from 'my-project'
+
+function App() {
+  return <Component />
+}
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
