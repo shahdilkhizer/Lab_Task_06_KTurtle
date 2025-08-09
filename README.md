@@ -1,108 +1,59 @@
-Turtle Graphics Drawing App
-This is a Java Swing-based Turtle Graphics application that allows you to draw shapes on a canvas using either built-in commands (like Square and ZigZag) or custom commands (e.g., F+F+F-F).
-It demonstrates object-oriented programming, command pattern, and 2D graphics rendering in Java.
-📂 Project Structure
-src/
-├── Main.java
-└── app/
-    ├── App.java
-    ├── commands/
-    │   ├── Command.java
-    │   ├── CommandParser.java
-    │   ├── SquareCommand.java
-    │   └── ZigZagCommand.java
-    ├── drawingcomponents/
-    │   ├── Canvas.java
-    │   └── Pen.java
-    ├── geometry/
-    │   ├── Line.java
-    │   └── Point.java
-    └── turtle/
-        └── Turtle.java
-How It Works
-Main Entry Point
+Turtle Graphics Application
+A simple Java console application that uses a "turtle" to draw shapes on a graphical canvas. You can either choose from built-in shapes or create your own custom designs by providing commands.
+```
+Features
+Built-in Shapes: Draw pre-defined shapes like a square or a zig-zag pattern.
 
-Main.java runs the program by calling new App().run().
+Custom Commands: Create your own drawings by using a sequence of commands.
 
-App Initialization
+F: Move the turtle forward.
 
-Creates a JFrame with a Canvas to draw lines.
++: Turn the turtle 90 degrees to the right.
 
-Initializes a Turtle object that can move and turn on the canvas.
+-: Turn the turtle 90 degrees to the left.
 
-Loads available commands (Square, ZigZag).
+Graphical Interface: The application uses a JFrame to display the canvas and the resulting drawings.
+```
+How to Run
+Prerequisites
+Java Development Kit (JDK) 8 or higher installed on your machine.
 
-User Choices
-
-Option 1: Choose from built-in shapes.
-
-Option 2: Enter a custom command string like:
-
-r
-Copy
-Edit
-F+F+F+F
-F → Move forward
-
-+ → Turn right 90°
-
-- → Turn left 90°
-
-Drawing
-
-The Turtle moves based on commands, drawing lines on the canvas using Pen and Canvas.
-
-📜 Example Usage
 Compilation
+Open your terminal or command prompt and navigate to the root directory of the project (where the Main.java file is located). Then, run the following command to compile all the Java files:
 
-bash
-Copy
-Edit
 javac app/geometry/*.java app/drawingcomponents/*.java app/turtle/*.java app/commands/*.java Main.java
-Run
 
-bash
-Copy
-Edit
+Execution
+After compiling successfully, run the application using the following command:
+
 java Main
-Sample Run
 
-markdown
-Copy
-Edit
-Available drawing commands:
- 1. Use Built-in Commands
+Usage
+When you run the application, you will be presented with a console menu:
+Available drawing commands: 
+ 1. Use Built-in Commands 
  2. Custom Shapes
-Choose: 1
-1. SquareCommand
-2. ZigZagCommand
-Choose a command (1 or 2): 1
-Or:
+Option 1: Built-in Commands
+Enter 1 and press Enter.
 
-r
-Copy
-Edit
-Available drawing commands:
- 1. Use Built-in Commands
- 2. Custom Shapes
-Choose: 2
-Give your Custom one e.g. F+F+F+F or F-F-F-F
+The console will show you the available built-in shapes, like SquareCommand and ZigZagCommand.
+
+Enter the corresponding number for the shape you want to draw (e.g., 1 for a square or 2 for a zig-zag) and press Enter.
+
+The shape will be drawn on the graphical canvas that appears.
+
+Option 2: Custom Shapes
+Enter 2 and press Enter.
+
+You will be prompted to enter a sequence of commands.
+
+Use F, +, and - to create your custom design. For example, to draw a square, you would type F+F+F+F.
+
+Press Enter to draw your custom shape on the canvas.
+
+Example:
+To draw a square using custom commands:
+
+Give your Custom one e.g. F+F+F+F or F-F-F-F 
  'F' = forward, '+' = turn right and '-' = turn left
-: F+F-F+F
-🛠 Key Classes
-Turtle: Extends Pen, moves and draws lines based on direction and step size.
-
-Canvas: A JPanel that stores and renders drawn lines.
-
-Command Interface: Defines a contract for shape commands.
-
-CommandParser: Reads custom strings and controls the turtle.
-
-SquareCommand / ZigZagCommand: Example built-in shapes.
-
-💡 Features
-✅ Custom shape commands (F, +, -)
-✅ Built-in shape commands
-✅ Modular design with Command pattern
-✅ Real-time drawing in Swing Canvas
-✅ Simple user interaction through console
+ :F+F+F+F
