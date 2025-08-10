@@ -59,27 +59,3 @@ To draw a square using custom commands:
 Give your Custom one e.g. F+F+F+F or F-F-F-F 
  'F' = forward, '+' = turn right and '-' = turn left
  :F+F+F+F
-
-
-## Installation
-
-Install my-project with npm
-
-```bash
-npm install my-project
-cd my-project
-```
-
-## Usage/Examples
-
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-```
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
