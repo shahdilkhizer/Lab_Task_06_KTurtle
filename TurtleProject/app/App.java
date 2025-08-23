@@ -1,70 +1,112 @@
 package app;
 
-import app.commands.*;  
+import app.commands.abstractCommand.*;
+import app.commands.concreteCommand.*;
+import app.commands.receiverClass.*;
+  
 import app.drawingcomponents.*;  
 import app.turtle.*;  
 import app.geometry.*;
 import java.util.Scanner;
 import javax.swing.*;
-
+//------------------------------------
 public class App
 {
-    private Turtle KTurtle;
-    private Command[] commands;
+    public Turtle KTurtle;
+    private ICommand[] commands;
+    private JFrame frame;
+    private Scanner sc;
+    private boolean done;
+    private int current;
+    Canvas blankPage;
     
-    public App() {
-    JFrame frame = new JFrame("Shahdil Canvas");
-    frame.setSize(400, 400);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Canvas blankPage = new Canvas();
-    frame.add(blankPage);
-    frame.setVisible(true);
-
-    KTurtle = new Turtle(50, 0); // stepSize, startingAngle
-    KTurtle.setCanvas(blankPage);
-    KTurtle.setPosition(new Point(50, 50));
-
-    commands = new Command[]{ new SquareCommand(), new ZigZagCommand() };
-}
+    public App() // -- Constructor
+    {
+        commands = new ICommand[]
+        { // Available Commands
+            new SquareCommand(),
+            new ZigZagCommand(),
+            new CustomShapeCmd(),
+            new QuitCmd()
+        };
+            frame         = new JFrame("My Canvas");
+            blankPage     = new Canvas();
+            KTurtle       = new Turtle(50, 0); // stepSize, startingAngle
+            sc            = new Scanner(System.in);
+                                       
+            configFrame("Shahdil's Canvas", 400, 400);
+        
+    }
 
     
     public void run() 
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Available drawing commands: \n 1. Use Built-in Commands \n 2. Custom Shapes");
-        int choice = sc.nextInt();
-        sc.nextLine();
-        if(choice == 1)
-        {
-            
-            for (int i = 0; i < commands.length; i++) {
-                System.out.println((i + 1) + ". " + commands[i].getClass().getSimpleName());
-            }
         
-            System.out.print("Choose a command (1 or 2): ");
-            // System.out.print("Or draw Custom Shapes using Command --> F+F+F+F or F-F-F-F : ");
-            int defaultChoiceSet = sc.nextInt();
-            sc.nextLine();
-            if (defaultChoiceSet >= 1 && defaultChoiceSet <= commands.length) 
-                commands[defaultChoiceSet - 1].defaultShapes(KTurtle);
-            else 
-                System.out.println("Invalid choice.");
-            
-        }// if
-        else if (choice == 2)
-        {
-            System.out.print("\n Give your Custom one e.g. F+F+F+F or F-F-F-F \n"+
-            " 'F' = forward, '+' = turn right and '-' = turn left\n :"
-            );
-            String customChoice = sc.nextLine();
-            new CommandParser(customChoice, KTurtle).parse();
-        }
-        else
-            System.out.println("Wrong Number..");
+        String usermessage = constructMessage();
         
-        sc.close();
-        System.out.println("Program Finished..");
+      try
+          {
+              while(!done)
+                  {
+                      System.out.print(usermessage);
+                      int cnum = sc.nextInt();
+                      if(!validateInput(cnum)) continue;
+                      processCommand(cnum);
+                  }
+          }
+        catch(Exception e)
+          {
+            System.out.println("Invalid Input");
+          }
+        
     }
 
+ private String constructMessage() 
+    {
+     String result = "Enter Command\n\t";
+        for (int i = 0; i < commands.length; i++) 
+        {
+            result += (i + 1) + ". " + commands[i].getClass().getSimpleName()+ " \n\t";
+        }
+     return result + "Type : ";
+    }
+    
+     private void processCommand(int cnum) 
+     {
+            current = commands[cnum -1].execute(KTurtle, sc);
+           if (current < 0) terminateProgram();
+     }
+    
+    private boolean validateInput(int cnum)
+    {
+        boolean bool = cnum > 0 && cnum <= commands.length;
+        if(!bool)
+            System.out.println("Invalid Input");
+            frame.setVisible(bool); // Hide the frame if input is invalid
         
-}
+        return bool;       
+    }
+
+    private void terminateProgram()
+    {
+        done = true;
+        System.exit(0);
+    }
+
+    public Turtle getTurtle()
+    { 
+        return KTurtle;
+    }
+    public void configFrame(String title, int height ,int width)
+    {
+        frame.setTitle(title);
+        frame.setSize(height, width);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(blankPage);
+        frame.setVisible(false);
+        KTurtle.setCanvas(blankPage); // This will set the canvas for the Pen class b/c 
+        //this method is not in turtle but for now we override it in turtle class
+        KTurtle.setPosition(new Point(0, 0));
+        blankPage.TurtlePosition(KTurtle.getCurrentPosition());
+    }
+}// class

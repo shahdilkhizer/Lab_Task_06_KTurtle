@@ -14,6 +14,10 @@ public class Pen
     {
         this.canvas = cvs;
     }
+    public Canvas getCanvas()
+    {
+        return this.canvas;
+    }
     public void movePenFromCurrentPointTo(Point p)
     {
         this.currentPosition = new Point(p);
@@ -25,7 +29,7 @@ public class Pen
             canvas.addLine(this.currentPosition, p);
             this.currentPosition = new Point(p);}
         else
-            System.out.println("You didn't set the Cnavas");
+            System.out.println("You didn't set the Canvas");
     }
     
     public void setPosition(Point p)
@@ -37,5 +41,6 @@ public class Pen
     {
         return this.currentPosition;
     }
+    
     
 }
