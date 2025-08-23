@@ -14,7 +14,7 @@ Organized – Clear separation of responsibilities (Invoker, Receiver, Commands)
 
 Extensible – Supports undo/redo, macros, and history tracking.
 
-📂 Project Structure
+**📂 Project Structure**
 app/
  ├── geometry/                # Geometric utilities (shapes, positions, vectors)
  ├── drawingcomponents/       # Drawing and rendering logic
@@ -26,35 +26,35 @@ app/
  ├── App.java                 # Entry point for running turtle operations
 Main.java                     # Starts the application
 
-⚡ Benefits of This Implementation
+**⚡ Benefits of This Implementation**
 
-Readability & Maintainability
+**Readability & Maintainability**
 Code is structured with clear folders and responsibilities, making it easy for other developers to follow.
 
-Extensibility
+**Extensibility**
 New commands can be added without modifying core logic. For example, adding a "DrawCircleCommand" only requires creating a new class.
 
-Reusability
+**Reusability**
 Commands are reusable objects that can be combined into sequences (macros) or stored for history/undo features.
 
-Scalability
+**Scalability**
 The system can grow by adding new drawing components or more complex commands without rewriting the whole project.
 
-Real-World Relevance
+**Real-World Relevance**
 The same pattern is used in text editors, graphics software, and even robotics for separating actions from receivers.
 
-🚀 How to Run
+**🚀 How to Run**
 
-Compile the project:
-
+**Compile the project:**
+```
 javac app/geometry/*.java app/drawingcomponents/*.java app/turtle/*.java app/commands/abstractCommand/*.java app/commands/receiverClass/*.java app/commands/concreteCommand/*.java app/App.java Main.java
+```
 
-
-Run the main program:
-
+**Run the main program:**
+```
 java Main
-
-🌟 Key Learning
+```
+**🌟 Key Learning**
 
 Encapsulating actions as Command objects increases flexibility.
 
